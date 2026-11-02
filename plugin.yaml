@@ -1,0 +1,22 @@
+name: nexus-recovery-peer
+version: "0.1.0"
+manifest_version: 2
+api_version: 1
+description: "One bounded peer-model suggestion after repeated tool failure/no-progress or a failed delegated child."
+author: "Nexus"
+license: MIT
+tags: [automation, models, recovery]
+kind: standalone
+requires_hermes: ">=0.22.5"
+capabilities:
+  - llm.provider_override
+  - llm.model_override
+config_schema:
+  routes:
+    type: list
+    default: []
+    label: "Independent model routes"
+    description: "Ordered list of {model_contains, origin_provider, peer_provider, peer_model}; empty disables external review."
+provides_hooks:
+  - pre_llm_call
+  - transform_tool_result
